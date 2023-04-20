@@ -1,0 +1,85 @@
+
+<!--定義XML的命名空間與Schema實例-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+<!--Maven POM文件的模型版本號-->
+  <modelVersion>4.0.0</modelVersion>
+
+<!--組織名稱-->
+  <groupId>com.mask</groupId>
+
+<!--專案名稱，專案的唯一標識符-->
+  <artifactId>mask-project</artifactId>
+  
+<!--最後打包產生的檔案類型，還有pom、war、ear、rar等參數-->
+  <packaging>jar</packaging>
+
+<!--專案版本-->
+  <version>1.0-SNAPSHOT</version>
+<!--專案名稱，顯示於建構報告和文檔中-->
+  <name>mask-project</name>
+
+<!--專案的官方網站-->
+  <url>http://maven.apache.org</url>
+
+<properties>
+   <maven.compiler.source>20</maven.compiler.source>
+   <maven.compiler.target>20</maven.compiler.target>
+ </properties>
+  
+
+<!--依賴項目群-->
+  <dependencies>
+    <!--單一依賴項目的定義-->
+    <dependency>
+    <!--項目資訊-->
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+     <!--依賴項的作用範圍，此處test表示僅在測試時使用-->
+      <scope>test</scope>
+    </dependency>
+
+    <!--Cowsay-->
+    <dependency>
+    <groupId>com.github.ricksbrown</groupId>
+    <artifactId>cowsay</artifactId>
+    <version>1.1.0</version>
+    </dependency>
+  </dependencies>
+
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.2.0</version>
+      <!--[> 配置主要資訊清單 <]-->
+      <configuration>
+	<archive>
+	  <manifest>
+	    <addClasspath>true</addClasspath>
+	    <mainClass>com.mask.App</mainClass>
+	  </manifest>
+	</archive>
+      </configuration>
+    </plugin>
+
+   <plugin>
+     <artifactId>maven-assembly-plugin</artifactId>
+     <configuration>
+	 <archive>
+	 <manifest>
+	     <mainClass>com.mask.App</mainClass>
+	 </manifest>
+	 </archive>
+	 <descriptorRefs>
+	 <descriptorRef>jar-with-dependencies</descriptorRef>
+	 </descriptorRefs>
+     </configuration>
+   </plugin>
+  </plugins>
+</build>
+  
+</project>
